@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukon Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .logo{
+            padding-left: 40px;
+        }
+        /* Topbar */
+        .topbar-text span {
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        /* Orbit rotation */
+        .orbit-container {
+            animation: spin 12s linear infinite;
+            transform-origin: center center;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Keep stats upright while rotating */
+        .stat {
+            white-space: nowrap;
+            animation: counter-spin 12s linear infinite;
+        }
+
+        @keyframes counter-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-white">
+    <!-- Top Bar -->
+    <div class="bg-gray-100 border-b text-sm">
+        <div class="container mx-auto px-4 py-2 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+            <div class="topbar-text flex flex-col sm:flex-row sm:space-x-6 text-gray-600 text-center sm:text-left">
+                <span><i class="fa-solid fa-phone text-orange-500 mr-1"></i>+800-123-4567 6587</span>
+                <span><i class="fa-solid fa-location-dot text-orange-500 mr-1"></i>Beverley, New York 224 USA</span>
+            </div>
+            <div class="topbar-icons flex justify-center sm:justify-end space-x-4 text-gray-600">
+                <h3 class="hover:text-orange-500 hidden sm:block">Find Us On:</h3>
+                <a href="#" class="hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-orange-500"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header bg-white border-b">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <img src="../images/edukon.png" class="logo h-8" alt="Edukon Logo">
+
+            <!-- Navbar -->
+            <nav class="navbar hidden md:flex space-x-6 text-gray-700 font-medium">
+                <a href="#" class="hover:text-orange-500">Home</a>
+                <a href="#" class="hover:text-orange-500">Courses</a>
+                <a href="#" class="hover:text-orange-500">Blog</a>
+                <a href="#" class="hover:text-orange-500">Pages</a>
+                <a href="#" class="hover:text-orange-500">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-700 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <nav class="flex flex-col p-4 space-y-3 text-gray-700 font-medium">
+                <a href="#" class="hover:text-orange-500">Home</a>
+                <a href="#" class="hover:text-orange-500">Courses</a>
+                <a href="#" class="hover:text-orange-500">Blog</a>
+                <a href="#" class="hover:text-orange-500">Pages</a>
+                <a href="#" class="hover:text-orange-500">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-container py-10 md:py-16">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 flex flex-col md:flex-row items-center justify-between">
+            <!-- Text -->
+            <div class="max-w-lg text-center md:text-left">
+                <p class="text-orange-500 font-bold uppercase">Online Education</p>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 leading-snug">
+                    Learn The<br>Skills You Need<br>To Succeed
+                </h2>
+                <p class="text-gray-600 mt-4">
+                    Free online courses from the world’s leading experts. Join 18+ million learners today.
+                </p>
+
+                <!-- Search Bar -->
+                <div class="flex flex-col sm:flex-row mt-6 relative w-full">
+                    <input type="text" id="search-input" placeholder="Keywords of your course"
+                        class="border px-4 py-2 flex-grow focus:outline-none rounded-t sm:rounded-l sm:rounded-t-none w-full">
+                    <button id="search-btn"
+                        class="bg-orange-500 text-white px-6 py-2 rounded-b sm:rounded-r sm:rounded-b-none hover:bg-orange-600">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search Course
+                    </button>
+
+                    <div id="search-results"
+                        class="absolute top-full left-0 w-full bg-white border rounded shadow hidden max-h-40 overflow-y-auto text-sm text-gray-700 z-50">
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <strong class="mt-4 block">Most Popular</strong>
+                <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                    <a href="#" class="text-blue-500 hover:underline">Figma</a>
+                    <a href="#" class="text-blue-500 hover:underline">Adobe XD</a>
+                    <a href="#" class="text-blue-500 hover:underline">Illustration</a>
+                    <a href="#" class="text-blue-500 hover:underline">Photoshop</a>
+                </div>
+            </div>
+
+            <!-- Image + Stats -->
+            <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center mt-10 md:mt-0">
+                <svg class="absolute inset-0" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="gradOuter" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ec4899" />
+                            <stop offset="100%" stop-color="#3b82f6" />
+                        </linearGradient>
+                        <linearGradient id="gradInner" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#f9a8d4" />
+                            <stop offset="100%" stop-color="#93c5fd" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="200" cy="200" r="190" fill="none" stroke="url(#gradOuter)" stroke-width="4"
+                        stroke-dasharray="6 8" />
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="url(#gradInner)" stroke-width="4"
+                        stroke-dasharray="6 8" />
+                </svg>
+
+                <img src="../images/student.png" alt="student"
+                    class="w-40 sm:w-56 md:w-60 h-auto z-10 shadow-lg rounded-full">
+
+                <div class="absolute w-full h-full flex items-center justify-center orbit-container">
+                    <div
+                        class="absolute stat top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-400 to-pink-500 text-white px-2 sm:px-3 py-1 rounded-full shadow text-xs sm:text-sm">
+                        130K+ Total Courses
+                    </div>
+                    <div
+                        class="absolute stat right-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-green-400 to-green-500 text-white px-2 sm:px-3 py-1 rounded-full shadow text-xs sm:text-sm">
+                        89% Successful Students
+                    </div>
+                    <div
+                        class="absolute stat bottom-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-400 to-orange-500 text-white px-2 sm:px-3 py-1 rounded-full shadow text-xs sm:text-sm">
+                        23M+ Learners
+                    </div>
+                    <div
+                        class="absolute stat left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-400 to-blue-500 text-white px-2 sm:px-3 py-1 rounded-full shadow text-xs sm:text-sm">
+                        36+ Languages
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course section -->
+    <section>
+        <h1 class="text-4xl text-orange-500 font-bold text-center mt-10">Explore Programs</h1>
+        <div class="flex flex-col md:flex-row gap-6 px-4 md:px-8 py-8 max-w-7xl mx-auto">
+            <!-- Sidebar -->
+            <div class="w-full md:w-1/4 bg-white px-4 sm:px-6 py-6 shadow rounded-lg">
+                <h2 class="text-xl text-orange-500 font-semibold mb-4">Select Type</h2>
+                <ul class="space-y-4">
+                    <li onclick="showCourses('tech')"
+                        class="bg-orange-500 p-3 rounded-lg flex justify-between items-center cursor-pointer hover:bg-orange-600">
+                        <span class="text-white"><i class="fa-solid fa-computer"></i> Tech & Data</span>
+                        <i class="fas fa-chevron-right text-white"></i>
+                    </li>
+                    <li onclick="showCourses('mechanics')"
+                        class="bg-orange-500 p-3 rounded-lg flex justify-between items-center cursor-pointer hover:bg-orange-600">
+                        <span class="text-white"><i class="fa-solid fa-gear"></i> Mechanics</span>
+                        <i class="fas fa-chevron-right text-white"></i>
+                    </li>
+                    <li onclick="showCourses('management')"
+                        class="bg-orange-500 p-3 rounded-lg flex justify-between items-center cursor-pointer hover:bg-orange-600">
+                        <span class="text-white"><i class="fa-solid fa-business-time"></i> Management</span>
+                        <i class="fas fa-chevron-right text-white"></i>
+                    </li>
+                    <li onclick="showCourses('medical')"
+                        class="bg-orange-500 p-3 rounded-lg flex justify-between items-center cursor-pointer hover:bg-orange-600">
+                        <span class="text-white"><i class="fa-solid fa-heart-pulse"></i> Medical</span>
+                        <i class="fas fa-chevron-right text-white"></i>
+                    </li>
+                    <li onclick="showCourses('design')"
+                        class="bg-orange-500 p-3 rounded-lg flex justify-between items-center cursor-pointer hover:bg-orange-600">
+                        <span class="text-white"><i class="fa-solid fa-wand-magic-sparkles"></i> Design</span>
+                        <i class="fas fa-chevron-right text-white"></i>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Courses Display -->
+            <div id="course-container" class="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script>
+        const courses = ["Figma", "Adobe XD", "Illustration", "Photoshop", "Web Development", "React.js", "Tailwind CSS", "UI/UX Design", "Digital Marketing", "Data Science"];
+
+        function toggleMobileMenu() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        }
+
+        function handleSearch() {
+            const searchInput = document.getElementById("search-input");
+            const query = searchInput.value.trim();
+            if (!query) { alert("Please enter a course keyword."); return; }
+            alert(`Searching for: ${query}`);
+        }
+
+        function showResults(query) {
+            const resultsBox = document.getElementById("search-results");
+            resultsBox.innerHTML = "";
+            if (!query) { resultsBox.classList.add("hidden"); return; }
+            const filtered = courses.filter(c => c.toLowerCase().includes(query.toLowerCase()));
+            if (filtered.length === 0) { resultsBox.innerHTML = "<div class='p-2 text-gray-500'>No results found</div>"; }
+            else {
+                filtered.forEach(course => {
+                    const item = document.createElement("div");
+                    item.className = "p-2 hover:bg-gray-100 cursor-pointer";
+                    item.textContent = course;
+                    item.onclick = () => { document.getElementById("search-input").value = course; resultsBox.classList.add("hidden"); handleSearch(); };
+                    resultsBox.appendChild(item);
+                });
+            }
+            resultsBox.classList.remove("hidden");
+        }
+
+        function initEventListeners() {
+            document.getElementById("menu-btn")?.addEventListener("click", toggleMobileMenu);
+            document.getElementById("search-btn")?.addEventListener("click", handleSearch);
+            const searchInput = document.getElementById("search-input");
+            searchInput?.addEventListener("keydown", e => { if (e.key === "Enter") handleSearch(); });
+            searchInput?.addEventListener("input", () => showResults(searchInput.value));
+        }
+
+        document.addEventListener("DOMContentLoaded", initEventListeners);
+
+        const coursesData = {
+            tech: [
+                { title: "Web Development", desc: "Master Web Fundamentals to Build Your Own Website", duration: "2 Months", mentees: "13k+", img: "../images/webdev.jpg" },
+                { title: "Android Development", desc: "Master Android Programming to Create Your Own Mobile Apps", duration: "2 Months", mentees: "10k+", img: "../images/android.jpg" },
+                { title: "Cyber Security", desc: "Protect digital systems from online threats", duration: "2 Months", mentees: "12k+", img: "../images/cyber.jpg" },
+                { title: "Artificial Intelligence", desc: "Learn AI algorithms and applications", duration: "3 Months", mentees: "15k+", img: "../images/ai.jpg" },
+                { title: "Data Science", desc: "Analyze data to extract insights", duration: "4 Months", mentees: "18k+", img: "../images/datascience.jpg" },
+                { title: "Machine Learning", desc: "Build ML models for prediction", duration: "4 Months", mentees: "14k+", img: "../images/ml.jpg" },
+                { title: "IoT & Robotics", desc: "Integrate hardware and software for smart systems", duration: "3 Months", mentees: "9k+", img: "../images/iot.jpg" },
+                { title: "Cloud Computing", desc: "Learn AWS, Azure, and cloud infrastructure", duration: "3 Months", mentees: "11k+", img: "../images/cloud.jpg" },
+                { title: "Embedded System", desc: "Design and program embedded devices", duration: "3 Months", mentees: "7k+", img: "../images/embedded.jpg" }
+            ],
+            mechanics: [
+                { title: "AutoCAD", desc: "Design and draft with AutoCAD software", duration: "2 Months", mentees: "6k+", img: "../images/Autocad.jpg" }
+            ],
+            management: [
+                { title: "Digital Marketing", desc: "Promote brands through digital channels", duration: "3 Months", mentees: "15k+", img: "../images/digitalmarketing.jpg" },
+                { title: "Finance", desc: "Learn investment, accounting, and budgeting", duration: "4 Months", mentees: "12k+", img: "../images/finance.jpg" },
+                { title: "Human Resources", desc: "Manage recruitment and employee relations", duration: "3 Months", mentees: "9k+", img: "../images/hr.jpg" },
+                { title: "Corporate Law", desc: "Understand legal frameworks in business", duration: "4 Months", mentees: "5k+", img: "../images/corporatelaw.jpg" }
+            ],
+            medical: [
+                { title: "Genetic Engineering / Nano Technology", desc: "Work with DNA and nanomaterials for medical applications", duration: "6 Months", mentees: "4k+", img: "../images/genetics.jpg" },
+                { title: "Medical Coding", desc: "Translate medical records into codes for billing", duration: "3 Months", mentees: "8k+", img: "../images/medicalcoding.jpeg" }
+            ],
+            design: [
+                { title: "Graphic Designing", desc: "Create visuals using design software", duration: "3 Months", mentees: "11k+", img: "../images/graphicdesign.jpg" },
+                { title: "UI/UX Design", desc: "Design user-friendly websites and apps", duration: "3 Months", mentees: "10k+", img: "../images/uiux.jpg" }
+            ]
+        };
+
+        function showCourses(category) {
+            const container = document.getElementById("course-container");
+            container.innerHTML = "";
+            coursesData[category].forEach(course => {
+                container.innerHTML += `
+                <div class="bg-orange-500 text-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                    <img src="${course.img}" alt="${course.title}" class="w-full h-40 sm:h-48 md:h-40 lg:h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">${course.title}</h3>
+                        <p class="text-sm mb-2">${course.desc}</p>
+                        <div class="flex justify-between text-xs mt-2">
+                            <span>${course.duration}</span>
+                            <span>${course.mentees}</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+        }
+    </script>
+</body>
+
+</html>
